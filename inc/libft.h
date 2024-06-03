@@ -6,7 +6,7 @@
 /*   By: lagea <lagea@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 01:26:11 by lagea             #+#    #+#             */
-/*   Updated: 2024/06/03 16:54:46 by lagea            ###   ########.fr       */
+/*   Updated: 2024/06/03 18:13:08 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
+# include <stdio.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1000000
@@ -135,15 +137,15 @@ typedef struct s_dll
 }					t_dll;
 
 
-t_node				*dll_new_node(int data);
-int				dll_size(t_stack *stack);
-void				dll_insert_head(int data, t_stack *stack);
-void				dll_insert_tail(int data, t_stack *stack);
-void				dll_delete_head(t_stack *stack);
-void				dll_delete_tail(t_stack *stack);
-void				dll_print_forward(t_stack *stack);
-void				dll_print_backward(t_stack *stack);
-void				dll_clear(t_stack *stack);
+t_node	*dll_new_node(int data);
+int	dll_size(t_dll *dll);
+void	dll_insert_head(int data, t_dll *dll);
+void	dll_insert_tail(int data, t_dll *dll);
+void	dll_delete_head(t_dll *dll);
+void	dll_delete_tail(t_dll *dll);
+void	dll_print_backward(t_dll *dll);
+void	dll_print_forward(t_dll *dll);
+void	dll_clear(t_dll *dll);
 
 /*-----------------------------GET NEXT LINE---------------------------------*/
 
