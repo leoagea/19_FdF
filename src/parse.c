@@ -6,31 +6,12 @@
 /*   By: lagea <lagea@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 18:20:50 by lagea             #+#    #+#             */
-/*   Updated: 2024/06/04 16:08:48 by lagea            ###   ########.fr       */
+/*   Updated: 2024/06/05 17:49:43 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
 
-static int dll_init(t_dll *dll)
-{
-	dll = malloc(sizeof(t_dll));
-	if (!dll)
-		return 0;
-	dll->head = NULL;
-	dll->tail = NULL;
-	return 1;
-}
-
-static int col_init(t_col *col)
-{
-	col = malloc(sizeof(t_col));
-	if (!col)
-		return 0;
-	col->dll = NULL;
-	col->next = NULL;
-	return 1;
-}
 static void fill_in_dll(t_dll *dll, char *line)
 {
 	int i;
@@ -48,19 +29,23 @@ static void fill_in_dll(t_dll *dll, char *line)
 	}
 }
 
-static void fill_in_col(t_col *col, t_dll *line)
+static void fill_in_col(t_dll *dll, t_col *col)
 {
-	col->dll = line;
-	col = col->next;
+	dll_print_forward(dll);
+	col->dll = dll;
+	// col = col->next;
 }
 
 void parse_file(char *path)
 {
 	int fd;
 	char *gnl;
-	t_dll line;
+	t_dll *line;
 	t_col *col;
 	
+
+	col = NULL;
+	line = NULL;
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 	{
@@ -70,17 +55,18 @@ void parse_file(char *path)
 	gnl = get_next_line(fd);
 	if (!gnl)
 		return ;
-	if (dll_init(&line) == 0 || dll_init(&col) == 0)
+	if (dll_init(line) == 0 || col_init(col) == 0)
 		return ;
-	while (gnl != NULL)
+	int i = 0;
+	while (/*gnl != NULL*/i < 1)
 	{
-		fill_in_col(col, &line);
+		line = dll_new();
+		fill_in_dll(line, gnl);
 		free(gnl);
+		fill_in_col(line, col);
+		gnl = get_next_line(fd);
+		i++;
 	}
-	col = NULL;
-	while (col)
-	{
-		/* code */
-	}
-	
+	// free(gnl);
+	// close(fd);
 }

@@ -6,7 +6,7 @@
 /*   By: lagea <lagea@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 13:41:40 by lagea             #+#    #+#             */
-/*   Updated: 2024/06/05 13:42:09 by lagea            ###   ########.fr       */
+/*   Updated: 2024/06/05 17:44:16 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,21 @@ int col_init(t_col *col)
 	col = malloc(sizeof(t_col));
 	if (!col)
 		return 0;
-	col->dll = NULL;
+	col->dll = malloc(sizeof(t_dll));
+	if (!col->dll)
+		return 0;
 	col->next = NULL;
 	return 1;
+}
+
+t_dll	*dll_new(void)
+{
+	t_dll	*new;
+
+	new = malloc(sizeof(t_dll));
+	if (!new)
+		return (NULL);
+	new->head = NULL;
+	new->tail = NULL;
+	return (new);
 }
