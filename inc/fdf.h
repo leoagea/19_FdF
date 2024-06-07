@@ -6,7 +6,7 @@
 /*   By: lagea <lagea@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 17:09:01 by lagea             #+#    #+#             */
-/*   Updated: 2024/06/05 17:45:10 by lagea            ###   ########.fr       */
+/*   Updated: 2024/06/07 12:55:43 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 typedef struct s_col
 {
 	t_dll *dll;
-	t_dll *next;
+	struct s_col *next;
 }				t_col;
 
 typedef struct s_mlx
@@ -37,9 +37,7 @@ typedef struct t_data
 
 /*--------------------Init--------------------*/
 
-int dll_init(t_dll *dll);
-int col_init(t_col *col);
-t_dll	*dll_new(void);
+
 
 /*--------------------Parse-------------------*/
 
