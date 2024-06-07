@@ -6,17 +6,12 @@
 /*   By: lagea <lagea@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 18:20:50 by lagea             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/06/07 17:27:18 by lagea            ###   ########.fr       */
-=======
-/*   Updated: 2024/06/07 12:55:39 by lagea            ###   ########.fr       */
->>>>>>> b0335ae3deecd1212a680d12c6a46292846214b9
+/*   Updated: 2024/06/07 17:42:25 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
 
-<<<<<<< HEAD
 static int	count_nbr(char const *s, char c)
 {
 	int	index;
@@ -75,21 +70,6 @@ void	parse_file(char *path)
 	
 
 	line = NULL;
-=======
-// static void fill_in_col(t_dll *dll, t_col *col)
-// {
-	
-// 	// dll_print_forward(dll);
-// 	col->dll = dll;
-// 	col = col->next;
-// }
-
-void parse_file(char *path)
-{
-	int fd;
-	char *gnl;
-	
->>>>>>> b0335ae3deecd1212a680d12c6a46292846214b9
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 	{
