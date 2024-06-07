@@ -1,5 +1,5 @@
 Parsing : 
-
+			Avant		Update gnl
 10-2		0.011
 10-70		0.041
 20-60 		0.123
@@ -8,15 +8,15 @@ Parsing :
 100-6		0.030
 basictest 	0.011
 elem-col	0.011
-elem-fract 	6.719
+elem-fract 	6.719		5.741
 elem2		0.011
-julia	 	6.535
+julia	 	6.535		5.698
 mars		0.046
-pentenegpos	0.10
+pentenegpos	0.010
 plat 		0.010
 pnp_plat	0.011
 pylone		0.012
 pyra		0.010
 pyramide	0.011
-t1			0.354
+t1			0.354		
 t2			0.066

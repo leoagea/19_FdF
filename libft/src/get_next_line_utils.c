@@ -6,7 +6,7 @@
 /*   By: lagea <lagea@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 22:29:25 by lagea             #+#    #+#             */
-/*   Updated: 2024/05/21 12:14:18 by lagea            ###   ########.fr       */
+/*   Updated: 2024/06/07 17:46:10 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,14 +85,16 @@ char	*my_strdup(char *s1)
 char	*substr(char *s, int start, int len)
 {
 	int		i;
+	int 	len_s;
 	char	*str;
 
 	if (!s)
 		return (NULL);
 	if (start > my_strlen(s))
 		return (malloc(1));
-	if (len > my_strlen(s + start))
-		len = my_strlen(s + start);
+	len_s = my_strlen(s + start);
+	if (len > len_s)
+		len = len_s;
 	str = malloc((len + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
