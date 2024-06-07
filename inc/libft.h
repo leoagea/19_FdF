@@ -6,7 +6,7 @@
 /*   By: lagea <lagea@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 01:26:11 by lagea             #+#    #+#             */
-/*   Updated: 2024/06/04 15:09:02 by lagea            ###   ########.fr       */
+/*   Updated: 2024/06/07 15:07:37 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,12 +123,16 @@ int					ft_printf(const char *s, ...);
 
 void				ft_putunbr_fd(unsigned int n, int fd);
 long				ft_atol(const char *str);
+int	ft_atoi_base(char *str, char *base);
 
 /*-------------------------DOUBLE LIMKED LIST----------------------------*/
 
 typedef struct s_node
 {
+	int col;
+	int line;
 	int value;
+	int color;
 	struct s_node *next;
 	struct s_node *prev;
 }					t_node;

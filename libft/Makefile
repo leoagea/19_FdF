@@ -6,7 +6,7 @@
 #    By: lagea <lagea@student.s19.be>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 16:07:15 by lagea             #+#    #+#              #
-#    Updated: 2024/05/21 13:10:25 by lagea            ###   ########.fr        #
+#    Updated: 2024/06/07 14:35:51 by lagea            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ SRC = src/ft_atoi.c src/ft_bzero.c src/ft_calloc.c src/ft_isalnum.c src/ft_isalp
 		src/dll_insert_head.c src/dll_insert_tail.c src/dll_new_node.c \
 		src/dll_print_forward.c src/dll_size.c src/dll_clear.c \
 		src/dll_delete_head.c src/dll_delete_tail.c src/dll_print_backward.c \
-		src/get_next_line.c src/get_next_line_utils.c 
+		src/get_next_line.c src/get_next_line_utils.c src/ft_atoi_base.c
 
 OBJ = $(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 
