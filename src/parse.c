@@ -6,7 +6,7 @@
 /*   By: lagea <lagea@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 18:20:50 by lagea             #+#    #+#             */
-/*   Updated: 2024/06/07 17:42:25 by lagea            ###   ########.fr       */
+/*   Updated: 2024/06/10 17:28:44 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,36 @@ static void	fill_in_dll(t_dll *dll, char *line, int row)
 	}
 }
 
-void	parse_file(char *path)
+static void fill_in_arr(t_dll *line, t_data *data)
+{
+	t_node	*current;
+
+	data->arr = malloc(sizeof(t_point *) * (((line->tail->line + 1) * line->tail->col) + 1));
+	int j = (line->tail->line + 1) * (line->tail->col + 1);
+	printf("y : %d, x : %d\n", line->tail->line + 1, line->tail->col + 1);
+	printf("j : %d\n\n",j);
+	int i = 0;
+	current = line->head;
+	while (i < j)
+	{
+		data->arr[i] = malloc(sizeof(t_point));
+		data->arr[i]->x =  current->col;
+		data->arr[i]->y =  current->line;
+		data->arr[i]->z =  current->value;
+		data->arr[i]->color =  current->color;
+		printf("i : %d, x : %d, y : %d , z : %d, color : %d\n", i, data->arr[i]->x,data->arr[i]->y, data->arr[i]->z, data->arr[i]->color);
+		i++;
+		current = current->next;
+	}
+}
+
+void	parse_file(char *path, t_data *data)
 {
 	int		fd;
 	int		row;
 	char	*gnl;
 	t_dll	*line;
-	t_node	*current;
-	t_point **arr = NULL;
+	(void) data;
 	
 
 	line = NULL;
@@ -90,6 +112,7 @@ void	parse_file(char *path)
 		gnl = get_next_line(fd);
 		row++;
 	}
+	free(gnl);
 	// current = line->head;
 	// while (current != NULL)
 	// {
@@ -97,21 +120,6 @@ void	parse_file(char *path)
 	// 	current = current->next;
 	// }
 	// printf("atoi base : %d\n",ft_atoi_base("FFFFFF", "0123456789ABCDEF"));
-	arr = malloc(sizeof(t_point *) * (((line->tail->line + 1) * line->tail->col) + 1));
-	int j = (line->tail->line + 1) * line->tail->col;
-	int i = 0;
-	current = line->head;
-	while (i < j)
-	{
-		arr[i] = malloc(sizeof(t_point));
-		arr[i]->x =  current->col;
-		arr[i]->y =  current->line;
-		arr[i]->z =  current->value;
-		arr[i]->color =  current->color;
-		// printf("x : %d, y : %d , z : %d, color : %d\n", arr[i]->x,arr[i]->y, arr[i]->z, arr[i]->color);
-		i++;
-		current = current->next;
-	}
-	// free(gnl);
+	fill_in_arr(line, data);
 	// close(fd);
 }
