@@ -6,7 +6,7 @@
 /*   By: lagea <lagea@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 17:09:01 by lagea             #+#    #+#             */
-/*   Updated: 2024/06/07 17:46:34 by lagea            ###   ########.fr       */
+/*   Updated: 2024/06/10 18:17:36 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,14 @@ typedef struct s_point
 	int y;
 	int z;
 	int color;
+	int x_proj;
+	int y_proj;
 }				t_point;
 
 typedef struct t_data
 {
 	t_mlx	mlx;
+	t_point **arr;
 }				t_data;
 
 /*--------------------Init--------------------*/
@@ -44,6 +47,11 @@ t_dll	*dll_new(void);
 
 /*--------------------Parse-------------------*/
 
-void parse_file(char *path);
+void	parse_file(char *path, t_data *data);
+
+/*-----------------Projection-----------------*/
+
+void draw_line(int i, t_data *data, int x2, int y2);
+void matrice(t_data *data, int i);
 
 #endif
