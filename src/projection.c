@@ -6,7 +6,7 @@
 /*   By: lagea <lagea@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 12:41:33 by lagea             #+#    #+#             */
-/*   Updated: 2024/06/11 14:54:24 by lagea            ###   ########.fr       */
+/*   Updated: 2024/06/11 17:39:50 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void draw_line(int i, t_data *data, int x2, int y2)
 	int j = 1;
 	while (j <= step)
 	{
-		mlx_pixel_put(data->mlx.mlx, data->mlx.win, data->arr[i]->x_proj + 10,data->arr[i]->y_proj+  10,data->arr[i]->color);
+		// mlx_pixel_put(data->mlx.mlx, data->mlx.win, data->arr[i]->x_proj,data->arr[i]->y_proj,data->arr[i]->color);
+		put_pixel_image(data->arr[i]->x_proj, data->arr[i]->y_proj, data->img.img_ptr, data->arr[i]->color);
 		data->arr[i]->x_proj += dx;
 		data->arr[i]->y_proj += dy;
 		j++;
@@ -68,7 +69,8 @@ void slope_less_then_one(int dx, int dy, t_data *data, int i)
 	
 	j = -1;
 	p = 2 * abs(dy) - abs(dx);
-	pixel_put(data, data->arr[i]->x, data->arr[i]->y);
+	// pixel_put(data, data->arr[i]->x, data->arr[i]->y);
+	put_pixel_image(data->arr[i]->x, data->arr[i]->y, data->img.img_ptr, data->arr[i]->color);
 	while (++j < abs(dx))
 	{
 		if (dx > 0)
@@ -85,7 +87,8 @@ void slope_less_then_one(int dx, int dy, t_data *data, int i)
 				data->arr[i]->y -= 1;
 			p = p + 2 * abs(dy) - 2 * abs(dx);
 		}
-		pixel_put(data, data->arr[i]->x, data->arr[i]->y);
+		// pixel_put(data, data->arr[i]->x, data->arr[i]->y);
+		put_pixel_image(data->arr[i]->x, data->arr[i]->y, data->img.img_ptr, data->arr[i]->color);
 	}
 }
 
@@ -96,7 +99,8 @@ void slope_bigger_then_one(int dx, int dy, t_data *data, int i)
 	
 	j = -1;
 	p = 2 * abs(dx) - abs(dy);
-	pixel_put(data, data->arr[i]->x, data->arr[i]->y);
+	// pixel_put(data, data->arr[i]->x, data->arr[i]->y);
+	put_pixel_image(data->arr[i]->x, data->arr[i]->y, data->img.img_ptr, data->arr[i]->color);
 	while (++j < abs(dy))
 	{
 		if (dy > 0)
@@ -113,7 +117,8 @@ void slope_bigger_then_one(int dx, int dy, t_data *data, int i)
 				data->arr[i]->x -= 1;
 			p = p + 2 * abs(dy) - 2 * abs(dy);
 		}
-		pixel_put(data, data->arr[i]->x, data->arr[i]->y);
+		put_pixel_image(data->arr[i]->x, data->arr[i]->y, data->img.img_ptr, data->arr[i]->color);
+		// pixel_put(data, data->arr[i]->x, data->arr[i]->y);
 	}
 }
 
@@ -149,7 +154,8 @@ void draw_map(t_data *data)
 		if (data->arr[i + 1])
 			draw_line_bresenham(data, i, data->arr[i + 1]->x, data->arr[i]->y);
 		if (data->arr[i + 19])
-			draw_line_bresenham(data, i, data->arr[i]->x, data->arr[i + data->map.len_x]->y);
+			draw_line_bresenham(data, i, data->arr[i]->x, data->arr[i + /*data->map.len_x*/ 19]->y);
 		i++;
 	}
 }
+

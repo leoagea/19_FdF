@@ -6,7 +6,7 @@
 /*   By: lagea <lagea@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 17:09:01 by lagea             #+#    #+#             */
-/*   Updated: 2024/06/11 14:37:15 by lagea            ###   ########.fr       */
+/*   Updated: 2024/06/11 16:49:30 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,25 @@ typedef struct s_point
 	int y_proj;
 }				t_point;
 
-typedef struct t_data
+typedef struct s_map
+{
+	int	len_x;
+}				t_map;
+
+typedef struct s_img
+{
+	void *img;
+	char *img_ptr;
+	int bits;
+	int size_line;
+	int endian;
+}				t_img;
+
+typedef struct s_data
 {
 	t_mlx	mlx;
+	t_map	map;
+	t_img	img;
 	t_point **arr;
 }				t_data;
 
@@ -61,5 +77,14 @@ void slope_bigger_then_one(int dx, int dy, t_data *data, int i);
 void matrice(t_data *data, int i);
 void pixel_put(t_data *data, int x, int y);
 void draw_map(t_data *data);
+
+/*------------------Isometric------------------*/
+
+void isometric(t_data *data);
+
+/*--------------------Image--------------------*/
+
+void	put_pixel_image(int x,int y, char *str, int color);
+void image(t_data *data);
 
 #endif
