@@ -6,7 +6,7 @@
 /*   By: lagea <lagea@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 18:20:50 by lagea             #+#    #+#             */
-/*   Updated: 2024/06/10 17:28:44 by lagea            ###   ########.fr       */
+/*   Updated: 2024/06/11 14:54:12 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static void fill_in_arr(t_dll *line, t_data *data)
 	printf("y : %d, x : %d\n", line->tail->line + 1, line->tail->col + 1);
 	printf("j : %d\n\n",j);
 	int i = 0;
+	data->map.len_x = line->tail->col + 1;
 	current = line->head;
 	while (i < j)
 	{
@@ -76,7 +77,7 @@ static void fill_in_arr(t_dll *line, t_data *data)
 		data->arr[i]->y =  current->line;
 		data->arr[i]->z =  current->value;
 		data->arr[i]->color =  current->color;
-		printf("i : %d, x : %d, y : %d , z : %d, color : %d\n", i, data->arr[i]->x,data->arr[i]->y, data->arr[i]->z, data->arr[i]->color);
+		// printf("i : %d, x : %d, y : %d , z : %d, color : %d\n", i, data->arr[i]->x,data->arr[i]->y, data->arr[i]->z, data->arr[i]->color);
 		i++;
 		current = current->next;
 	}

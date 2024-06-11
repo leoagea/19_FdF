@@ -6,7 +6,7 @@
 /*   By: lagea <lagea@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 17:09:01 by lagea             #+#    #+#             */
-/*   Updated: 2024/06/10 18:17:36 by lagea            ###   ########.fr       */
+/*   Updated: 2024/06/11 14:37:15 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 #include "../mlx/mlx.h"
 
 # define ESC 53
+# define HEIGHT 1080
+# define WIDTH 1920
+# define ZOOM 20
 
 typedef struct s_mlx
 {
@@ -52,6 +55,11 @@ void	parse_file(char *path, t_data *data);
 /*-----------------Projection-----------------*/
 
 void draw_line(int i, t_data *data, int x2, int y2);
+void draw_line_bresenham(t_data *data, int i, int x2, int y2);
+void slope_less_then_one(int dx, int dy, t_data *data, int i);
+void slope_bigger_then_one(int dx, int dy, t_data *data, int i);
 void matrice(t_data *data, int i);
+void pixel_put(t_data *data, int x, int y);
+void draw_map(t_data *data);
 
 #endif
