@@ -6,7 +6,7 @@
 /*   By: lagea <lagea@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 17:08:45 by lagea             #+#    #+#             */
-/*   Updated: 2024/06/11 17:34:18 by lagea            ###   ########.fr       */
+/*   Updated: 2024/06/12 16:43:37 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,15 +76,18 @@ int main(int ac, char **av)
 	data.mlx.win = mlx_new_window(data.mlx.mlx, 1920, 1080, "FdF");
 	mlx_hook(data.mlx.win, 17, 0, &destroy, &data);
 	mlx_hook(data.mlx.win, 2, 0, &keypress, &data);
+	// t_point *a = malloc(sizeof(t_point));
+	// t_point *b = malloc(sizeof(t_point));
+	// a->x = 0;
+	// a->y = 0;
+	// b->x = 750;
+	// b->y = 750;
+	// printf("x : %d, y : %d\n",data.arr[0]->x, data.arr[0]->y);
+	// printf("x : %d, y : %d\n",data.arr[35]->x, data.arr[35]->y);
+	// draw_line_bresenham(data.arr[0], data.arr[35], &data);
 	// draw_line(0, &data, 0, 0);
 	// draw_line(0, &data, 800, 800);
-	// for (int i = 0; i < 208; i++)
-	// {
-	// 	if (data.arr[i + 1])
-	// 		draw_line(i, &data, data.arr[i + 1]->x, data.arr[i + 1]->x);
-	// 	if (data.arr[i + 3])
-	// 		draw_line(i, &data, data.arr[i + 3]->x, data.arr[i + 3]->y);
-	// }
+
 	image(&data);
 	// draw_map(&data);
 	mlx_loop(data.mlx.mlx);

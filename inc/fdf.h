@@ -6,7 +6,7 @@
 /*   By: lagea <lagea@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 17:09:01 by lagea             #+#    #+#             */
-/*   Updated: 2024/06/11 16:49:30 by lagea            ###   ########.fr       */
+/*   Updated: 2024/06/12 16:45:39 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ typedef struct s_point
 typedef struct s_map
 {
 	int	len_x;
+	int len_y;
+	int zoom;
 }				t_map;
 
 typedef struct s_img
@@ -71,16 +73,15 @@ void	parse_file(char *path, t_data *data);
 /*-----------------Projection-----------------*/
 
 void draw_line(int i, t_data *data, int x2, int y2);
-void draw_line_bresenham(t_data *data, int i, int x2, int y2);
-void slope_less_then_one(int dx, int dy, t_data *data, int i);
-void slope_bigger_then_one(int dx, int dy, t_data *data, int i);
-void matrice(t_data *data, int i);
+void draw_line_bresenham(t_point *a, t_point *b, t_data *data);
+void slope_less_then_one(int dx, int dy, t_data *data, t_point *a);
+void slope_bigger_then_one(int dx, int dy, t_data *data, t_point *a);
 void pixel_put(t_data *data, int x, int y);
 void draw_map(t_data *data);
 
 /*------------------Isometric------------------*/
 
-void isometric(t_data *data);
+void isometric(t_data **data);
 
 /*--------------------Image--------------------*/
 

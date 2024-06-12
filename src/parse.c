@@ -6,7 +6,7 @@
 /*   By: lagea <lagea@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 18:20:50 by lagea             #+#    #+#             */
-/*   Updated: 2024/06/11 17:33:27 by lagea            ###   ########.fr       */
+/*   Updated: 2024/06/12 16:26:39 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@ static void fill_in_arr(t_dll *line, t_data *data)
 	printf("j : %d\n\n",j);
 	int i = 0;
 	data->map.len_x = line->tail->col + 1;
+	data->map.len_y = line->tail->line + 1;
+	printf("len line : %d\n",data->map.len_x);
+	printf("len nbr : %d\n",data->map.len_y);
 	current = line->head;
 	while (i < j)
 	{
@@ -81,6 +84,7 @@ static void fill_in_arr(t_dll *line, t_data *data)
 		i++;
 		current = current->next;
 	}
+	// data->arr[i] = NULL;
 }
 
 void	parse_file(char *path, t_data *data)
