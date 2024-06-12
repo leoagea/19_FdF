@@ -6,7 +6,7 @@
 /*   By: lagea <lagea@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 15:55:13 by lagea             #+#    #+#             */
-/*   Updated: 2024/06/11 17:34:33 by lagea            ###   ########.fr       */
+/*   Updated: 2024/06/12 17:47:08 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,21 @@ void	put_pixel_image(int x,int y, char *str, int color)
 
 void image(t_data *data)
 {
+	int i;
+
+	i = 0;
 	data->img.img = mlx_new_image(data->mlx.mlx, WIDTH, HEIGHT);
 	data->img.img_ptr = mlx_get_data_addr(data->img.img, &data->img.bits, &data->img.size_line, &data->img.endian);
 	// print_square(10,10, 50, data);
-	draw_map(data);
-	mlx_put_image_to_window(data->mlx.mlx, data->mlx.win, data->img.img, 0,0);
+	// draw_map(data);
+	isometric(&data);
+	int j = data->map.len_x * data->map.len_y;
+	while (i < j)
+	{
+		// printf("i : %d, x : %d, y : %d , z : %d, color : %d\n", i, data->arr[i]->x_proj,data->arr[i]->y_proj, data->arr[i]->z, data->arr[i]->color);
+		// put_pixel_image(data->arr[i]->x_proj ,data->arr[i]->y_proj, data->img.img_ptr, data->arr[i]->color);
+		mlx_pixel_put(data->mlx.mlx, data->mlx.win, data->arr[i]->x_proj, data->arr[i]->y_proj, data->arr[i]->color);
+		i++;
+	}
+	// mlx_put_image_to_window(data->mlx.mlx, data->mlx.win, data->img.img, 0,0);
 }
