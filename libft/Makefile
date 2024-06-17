@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lagea <lagea@student.s19.be>               +#+  +:+       +#+         #
+#    By: lagea < lagea@student.s19.be >             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 16:07:15 by lagea             #+#    #+#              #
-#    Updated: 2024/06/07 14:35:51 by lagea            ###   ########.fr        #
+#    Updated: 2024/06/18 00:05:45 by lagea            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,6 @@ clean:
 fclean: clean
 	@echo "$(ORANGE)Fully cleaning libft...$(NC)"
 	@$(RM) $(LIBNAME)
-	@rm -rf $(LIB_DIR)
 	@echo "$(BLUE)Fully cleaned libft!$(NC)"
 
 re: fclean all
