@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile copy                                      :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lagea <lagea@student.s19.be>               +#+  +:+       +#+         #
+#    By: lagea < lagea@student.s19.be >             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/06 01:08:23 by lagea             #+#    #+#              #
-#    Updated: 2024/06/03 17:46:54 by lagea            ###   ########.fr        #
+#    Updated: 2024/06/18 00:17:55 by lagea            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,20 @@ BLUE=\033[0;34m
 ORANGE=\033[38;2;255;165;0m
 NC=\033[0m 
 
+ARCH := $(shell uname -m)
+
+# Cible pour Mac ARM
+ifeq ($(ARCH),arm64)
+    MLX			= -lglfw -L"/opt/homebrew/Cellar/glfw/3.4/lib/"
+	LIB 		= lib/libmlx42.a
+else
+# Cible pour Mac Intel
+    CC = clang
+    CFLAGS = -arch x86_64
+    LDFLAGS = -arch x86_64
+    TARGET = mac_intel_app
+endif
+
 NAME		= fdf
 BONUS		= so_long_bonus
 
@@ -26,7 +40,8 @@ OBJ_DIR		= obj/
 OBJB_DIR	= obj_bonus/
 INC_DIR		= inc/
 
-SRC 		= $(wildcard $(SRC_DIR)*.c) 
+#SRC 		= $(wildcard $(SRC_DIR)*.c) 
+SRC 		= main.c
 OBJ			= $(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 SRCB 		= $(wildcard $(BONUS_DIR)*.c) 
 OBJB		= $(SRCB:$(BONUS_DIR)%.c=$(OBJB_DIR)%.o)
@@ -38,9 +53,8 @@ CC			= gcc
 RM			= rm -f
 C_FLAGS		= -Wall -Wextra -Werror
 INCS 		= -I$(INC_DIR) -I.
-MLX			= -Lmlx -lmlx -framework OpenGL -framework AppKit
 
-TOTAL_FILES 	:= $(words $(SRC))
+TOTAL_FILES 	:= $(words $(SRC_DIR))
 CURRENT_FILE 	:= 0
 
 define progress_bar_so_long
@@ -74,7 +88,7 @@ bonus : $(BONUS)
 
 $(NAME): $(LIBFT) $(OBJ)
 	@echo "$(GREEN)Linking objects to create executable...$(NC)"
-	@$(CC) $(OBJ) -Llib/ -lft $(MLX) -g -o $(NAME)
+	@$(CC) $(OBJ) $(LIB) $(MLX) -g -o $(NAME)
 	@echo "$(BLUE)Executable $(NAME) created!$(NC)"
 
 $(BONUS):$(LIBFT) $(OBJB)
