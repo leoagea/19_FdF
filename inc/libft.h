@@ -6,7 +6,7 @@
 /*   By: lagea <lagea@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 01:26:11 by lagea             #+#    #+#             */
-/*   Updated: 2024/06/10 12:46:33 by lagea            ###   ########.fr       */
+/*   Updated: 2024/06/18 15:33:26 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,29 +95,7 @@ void				ft_lstdelone(t_list *lst, void (*del)(void *));
 void				ft_lstclear(t_list **lst, void (*del)(void *));
 
 /*--------------------------------PRINTF---------------------------------*/
-/* Printf */
 
-int					ft_print_char(char c);
-int					ft_print_string(char *s);
-int					ft_print_decimal(int n);
-int					ft_print_udecimal(unsigned int n);
-int					ft_print_hex(unsigned int n, char *base);
-
-/* Utils_2 */
-int					ft_print_udecimal(unsigned int n);
-int					ft_print_add(unsigned long add);
-int					ft_print_hex_add(unsigned long n);
-
-/* Utils_len */
-int					ft_int_len(long n);
-int					ft_add_len(unsigned long add);
-int					ft_hex_len(unsigned int hex);
-
-/* Parse */
-int					ft_check_next_char(const char *s, int index);
-int					ft_parse_printf(const char *s, int index, va_list *par);
-
-/* Printf */
 int					ft_printf(const char *s, ...);
 
 /*----------------------------ADDED FUNCTIONS----------------------------*/
@@ -157,16 +135,6 @@ void	dll_clear(t_dll *dll);
 
 /*-----------------------------GET NEXT LINE---------------------------------*/
 
-/* get_next_line */
 char				*get_next_line(int fd);
-char				*ft_set_line(char *line_buffer);
-char				*ft_fill_line_buffer(int fd, char *stash, char *buffer);
-
-/* get_next_line_utils */
-int					my_strlen(const char *str);
-char				*strchr_index(char *str);
-char				*my_strdup(char *s1);
-char				*strjoin(char *s1, char *s2);
-char				*substr(char *s, int start, int len);
 
 #endif
