@@ -6,7 +6,7 @@
 /*   By: lagea <lagea@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 18:20:50 by lagea             #+#    #+#             */
-/*   Updated: 2024/06/12 16:26:39 by lagea            ###   ########.fr       */
+/*   Updated: 2024/06/18 17:38:16 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,32 +59,70 @@ static void	fill_in_dll(t_dll *dll, char *line, int row)
 	}
 }
 
+// static void fill_in_arr(t_dll *line, t_data *data)
+// {
+// 	t_node	*current;
+
+// 	data->arr = malloc(sizeof(t_point *) * (((line->tail->line + 1) * line->tail->col) + 1));
+// 	int j = (line->tail->line + 1) * (line->tail->col + 1);
+// 	printf("y : %d, x : %d\n", line->tail->line + 1, line->tail->col + 1);
+// 	printf("j : %d\n\n",j);
+// 	int i = 0;
+// 	data->map.len_x = line->tail->col + 1;
+// 	data->map.len_y = line->tail->line + 1;
+// 	printf("len line : %d\n",data->map.len_x);
+// 	printf("len nbr : %d\n",data->map.len_y);
+// 	current = line->head;
+// 	while (i < j)
+// 	{
+// 		data->arr[i] = malloc(sizeof(t_point));
+// 		data->arr[i]->x =  current->col;
+// 		data->arr[i]->y =  current->line;
+// 		data->arr[i]->z =  current->value;
+// 		data->arr[i]->color =  current->color;
+// 		// printf("i : %d, x : %d, y : %d , z : %d, color : %d\n", i, data->arr[i]->x,data->arr[i]->y, data->arr[i]->z, data->arr[i]->color);
+// 		i++;
+// 		current = current->next;
+// 	}
+// 	// data->arr[i] = NULL;
+// }
+
 static void fill_in_arr(t_dll *line, t_data *data)
 {
 	t_node	*current;
 
-	data->arr = malloc(sizeof(t_point *) * (((line->tail->line + 1) * line->tail->col) + 1));
-	int j = (line->tail->line + 1) * (line->tail->col + 1);
-	printf("y : %d, x : %d\n", line->tail->line + 1, line->tail->col + 1);
-	printf("j : %d\n\n",j);
-	int i = 0;
+	data->arr = malloc(sizeof(t_point **) * ((line->tail->line + 1) + 1));
+	// int j = (line->tail->line + 1) * (line->tail->col + 1);
+	// printf("y : %d, x : %d\n", line->tail->line + 1, line->tail->col + 1);
+	// printf("j : %d\n\n",j);
 	data->map.len_x = line->tail->col + 1;
 	data->map.len_y = line->tail->line + 1;
-	printf("len line : %d\n",data->map.len_x);
-	printf("len nbr : %d\n",data->map.len_y);
+	printf("len line (j): %d\n",data->map.len_x);
+	printf("len nbr (i): %d\n",data->map.len_y);
 	current = line->head;
-	while (i < j)
+	int i = 0;
+	int j = 0;
+	while (i < data->map.len_y)
 	{
-		data->arr[i] = malloc(sizeof(t_point));
-		data->arr[i]->x =  current->col;
-		data->arr[i]->y =  current->line;
-		data->arr[i]->z =  current->value;
-		data->arr[i]->color =  current->color;
+		j = 0;
+		// printf("\ni : %d\n",i);
+		data->arr[i] = malloc(sizeof(t_point *) * data->map.len_x + 1);
+		while (j < data->map.len_x)
+		{
+			data->arr[i][j] = malloc(sizeof(t_point));
+			// printf("j : %d\n",j);
+			data->arr[i][j]->x =  current->col;
+			data->arr[i][j]->y =  current->line;
+			data->arr[i][j]->z =  current->value;
+			data->arr[i][j]->color =  current->color;
+			current = current->next;
+			j++;
+		}
+		data->arr[i][j] = NULL;
 		// printf("i : %d, x : %d, y : %d , z : %d, color : %d\n", i, data->arr[i]->x,data->arr[i]->y, data->arr[i]->z, data->arr[i]->color);
 		i++;
-		current = current->next;
 	}
-	// data->arr[i] = NULL;
+	data->arr[i] = NULL;
 }
 
 void	parse_file(char *path, t_data *data)
