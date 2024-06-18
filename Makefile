@@ -6,7 +6,7 @@
 #    By: lagea <lagea@student.s19.be>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/06 01:08:23 by lagea             #+#    #+#              #
-#    Updated: 2024/06/18 13:23:18 by lagea            ###   ########.fr        #
+#    Updated: 2024/06/18 15:36:12 by lagea            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,6 @@ else
 endif
 
 NAME		= fdf
-BONUS		= so_long_bonus
 
 SRC_DIR		= src/
 BONUS_DIR	= bonus/
@@ -38,8 +37,8 @@ OBJ_DIR		= obj/
 OBJB_DIR	= obj_bonus/
 INC_DIR		= inc/
 
-#SRC 		= $(wildcard $(SRC_DIR)*.c) 
-SRC 		= main.c
+SRC 		= $(wildcard $(SRC_DIR)*.c) 
+#SRC 		= main.c
 OBJ			= $(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 SRCB 		= $(wildcard $(BONUS_DIR)*.c) 
 OBJB		= $(SRCB:$(BONUS_DIR)%.c=$(OBJB_DIR)%.o)
@@ -52,33 +51,23 @@ RM			= rm -f
 C_FLAGS		= -Wall -Wextra -Werror
 INCS 		= -I$(INC_DIR) -I.
 
-TOTAL_FILES 	:= $(words $(SRC_DIR))
+TOTAL_FILES 	:= $(words $(SRC))
 CURRENT_FILE 	:= 0
 
-define progress_bar_so_long
+define progress_bar_fdf
     @$(eval CURRENT_FILE=$(shell echo $$(($(CURRENT_FILE) + 1))))
-    @printf "\r$(YELLOW)Compiling So long... [%-$(TOTAL_FILES)s] %d/%d $(NC)" $$(for i in $$(seq 1 $(CURRENT_FILE)); do printf "#"; done) $(CURRENT_FILE) $(TOTAL_FILES)
+    @printf "\r$(YELLOW)Compiling FdF... [%-$(TOTAL_FILES)s] %d/%d $(NC)" $$(for i in $$(seq 1 $(CURRENT_FILE)); do printf "#"; done) $(CURRENT_FILE) $(TOTAL_FILES)
 	@if [ $(CURRENT_FILE) -eq $(TOTAL_FILES) ]; then echo ""; fi
 endef
 
-TOTAL_FILES 	:= $(words $(SRCB))
+TOTAL_FILES 	:= $(words $(wildcard $(SRC_DIR)*.c))
 CURRENT_FILE 	:= 0
 
-define progress_bar_so_long_bonus
-    @$(eval CURRENT_FILE=$(shell echo $$(($(CURRENT_FILE) + 1))))
-    @printf "\r$(YELLOW)Compiling So long bonus... [%-$(TOTAL_FILES)s] %d/%d $(NC)" $$(for i in $$(seq 1 $(CURRENT_FILE)); do printf "#"; done) $(CURRENT_FILE) $(TOTAL_FILES)
-	@if [ $(CURRENT_FILE) -eq $(TOTAL_FILES) ]; then echo ""; fi
-endef
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(C_FLAGS) $(INCS) -Imlx -c $< -g -o $@
-	$(call progress_bar_so_long)
-
-$(OBJB_DIR)%.o: $(BONUS_DIR)%.c
-	@mkdir -p $(OBJB_DIR)
-	$(CC) $(C_FLAGS) $(INCS) -Imlx -c $< -g -o $@
-	$(call progress_bar_so_long_bonus)
+	@$(CC) $(C_FLAGS) $(INCS) -Imlx -c $< -o $@
+	$(call progress_bar_fdf)
 
 all: $(LIBFT) $(NAME)
 
@@ -86,7 +75,7 @@ bonus : $(BONUS)
 
 $(NAME): $(LIBFT) $(OBJ)
 	@echo "$(GREEN)Linking objects to create executable...$(NC)"
-	@$(CC) $(OBJ) $(LIB) $(MLX) -g -o $(NAME)
+	@$(CC) $(OBJ) $(LIBFT) $(LIB) $(MLX) -o $(NAME)
 	@echo "$(BLUE)Executable $(NAME) created!$(NC)"
 
 $(BONUS):$(LIBFT) $(OBJB)
@@ -102,20 +91,20 @@ clean:
 	@echo "$(ORANGE)Cleaning objects for Libft...$(NC)"
 	@$(MAKE) clean -C $(LIBFT_PATH) > /dev/null
 	@echo "$(GREEN)Cleaned objects Libft!$(NC)"
-	@echo "$(ORANGE)Cleaning objects for So long...$(NC)"
+	@echo "$(ORANGE)Cleaning objects for FdF...$(NC)"
 	@$(RM) $(OBJ_DIR)*.o
 	@$(RM) $(OBJB_DIR)*.o
-	@echo "$(GREEN)Cleaned So long objects!$(NC)"
+	@echo "$(GREEN)Cleaned FdF objects!$(NC)"
 
 fclean: clean
 	@echo "$(ORANGE)Fully cleaning library for Libft...$(NC)"
 	@$(MAKE) fclean -C $(LIBFT_PATH) > /dev/null
 	@echo "$(BLUE)Fully cleaned Libft!$(NC)"
-	@echo "$(ORANGE)Fully cleaning library for So long...$(NC)"
+	@echo "$(ORANGE)Fully cleaning library for FdF...$(NC)"
 	@$(RM) $(NAME) $(BONUS)
 	@$(RM) -r $(OBJ_DIR)
 	@$(RM) -r $(OBJB_DIR)
-	@echo "$(BLUE)Fully cleaned So long!$(NC)"
+	@echo "$(BLUE)Fully cleaned FdF!$(NC)"
 
 re: fclean all
 

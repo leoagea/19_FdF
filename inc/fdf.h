@@ -6,7 +6,7 @@
 /*   By: lagea <lagea@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 17:09:01 by lagea             #+#    #+#             */
-/*   Updated: 2024/06/12 16:45:39 by lagea            ###   ########.fr       */
+/*   Updated: 2024/06/18 13:54:51 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #define FDF_H
 
 #include "libft.h"
-#include "../mlx/mlx.h"
+#include "../MLX42/include/MLX42/MLX42.h"
 
 # define ESC 53
 # define HEIGHT 1080
