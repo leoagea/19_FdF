@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lagea < lagea@student.s19.be >             +#+  +:+       +#+         #
+#    By: lagea <lagea@student.s19.be>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/06 01:08:23 by lagea             #+#    #+#              #
-#    Updated: 2024/06/18 00:17:55 by lagea            ###   ########.fr        #
+#    Updated: 2024/06/18 13:23:18 by lagea            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,13 +22,11 @@ ARCH := $(shell uname -m)
 # Cible pour Mac ARM
 ifeq ($(ARCH),arm64)
     MLX			= -lglfw -L"/opt/homebrew/Cellar/glfw/3.4/lib/"
-	LIB 		= lib/libmlx42.a
+	LIB			= lib/lib_x86/libmlx42.a
 else
 # Cible pour Mac Intel
-    CC = clang
-    CFLAGS = -arch x86_64
-    LDFLAGS = -arch x86_64
-    TARGET = mac_intel_app
+    MLX			= -lglfw -L"/Users/lagea/homebrew/opt/glfw/lib/"
+	LIB 		= lib/lib_x64/libmlx42.a
 endif
 
 NAME		= fdf
@@ -79,7 +77,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 
 $(OBJB_DIR)%.o: $(BONUS_DIR)%.c
 	@mkdir -p $(OBJB_DIR)
-	@$(CC) $(C_FLAGS) $(INCS) -Imlx -c $< -g -o $@
+	$(CC) $(C_FLAGS) $(INCS) -Imlx -c $< -g -o $@
 	$(call progress_bar_so_long_bonus)
 
 all: $(LIBFT) $(NAME)
