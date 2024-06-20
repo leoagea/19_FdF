@@ -6,32 +6,24 @@
 /*   By: lagea <lagea@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 17:08:45 by lagea             #+#    #+#             */
-/*   Updated: 2024/06/17 16:51:39 by lagea            ###   ########.fr       */
+/*   Updated: 2024/06/20 17:45:25 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
 
-int destroy(t_data *data)
-{
-	mlx_destroy_window(data->mlx.mlx, data->mlx.win);
-	free(data->mlx.mlx);
-	exit(0);
-	return 0;
-}
-
-int keypress(int keysym, t_data *data)
-{
-	// printf("key : %d\n",keysym);
-	if (keysym == ESC)
-		destroy(data);
-	return 0;
-}
-
 int init_data(t_data *data)
 {
 	data->arr = NULL;
 	return 0;
+}
+
+void hook(void* param)
+{
+	mlx_t* mlx = param;
+
+	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(mlx);
 }
 
 int main(int ac, char **av)
@@ -47,11 +39,30 @@ int main(int ac, char **av)
 	else
 		exit(EXIT_FAILURE);
 
-	data.mlx.mlx = mlx_init();
-	data.mlx.win = mlx_new_window(data.mlx.mlx, 1920, 1080, "FdF");
-	mlx_hook(data.mlx.win, 17, 0, &destroy, &data);
-	mlx_hook(data.mlx.win, 2, 0, &keypress, &data);
+	if (!(data.mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true)))
+	{
+		puts(mlx_strerror(mlx_errno));
+		return(EXIT_FAILURE);
+	}
+	create_image(&data);
+	
+	mlx_loop_hook(data.mlx, hook, data.mlx);
+	
+	mlx_loop(data.mlx);
+	mlx_terminate(data.mlx);
 
-	mlx_loop(data.mlx.mlx);
-	return 0;
+	// int i = 0;
+	// int j;
+	// while (i < data.map.len_y)
+	// {
+	// 	j = 0;
+	// 	while (j < data.map.len_x)
+	// 	{
+	// 		printf("i : %d, x : %d, y : %d , z : %d, color : %d\n", i, data.arr[i][j]->x,data.arr[i][j]->y, data.arr[i][j]->z, data.arr[i][j]->color);
+	// 		j++;
+	// 	}
+	// 	i++;
+	// }
+	
+	return EXIT_SUCCESS;
 }
