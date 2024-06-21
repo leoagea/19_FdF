@@ -6,7 +6,7 @@
 /*   By: lagea <lagea@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 18:14:17 by lagea             #+#    #+#             */
-/*   Updated: 2024/06/20 18:23:23 by lagea            ###   ########.fr       */
+/*   Updated: 2024/06/21 13:13:28 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,7 @@ void create_image(t_data *data)
 	if (!(data->image = mlx_new_image(data->mlx, WIDTH, HEIGHT)))
 	{
 		mlx_close_window(data->mlx);
-		puts(mlx_strerror(mlx_errno));
-		exit(EXIT_FAILURE);
+		error();
 	}
 	isometric_projection(data);
 	ft_memset(data->image->pixels, 16, data->image->width * data->image->height * sizeof(int32_t));
