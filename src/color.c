@@ -6,13 +6,13 @@
 /*   By: lagea <lagea@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 18:18:40 by lagea             #+#    #+#             */
-/*   Updated: 2024/06/20 18:21:09 by lagea            ###   ########.fr       */
+/*   Updated: 2024/06/21 13:12:46 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
 
- int get_rgba(int r, int g, int b, int a)
+int get_rgba(int r, int g, int b, int a)
 {
     return (r << 24 | g << 16 | b << 8 | a);
 }
