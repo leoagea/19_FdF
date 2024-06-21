@@ -6,7 +6,7 @@
 /*   By: lagea <lagea@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 18:14:17 by lagea             #+#    #+#             */
-/*   Updated: 2024/06/21 16:08:36 by lagea            ###   ########.fr       */
+/*   Updated: 2024/06/21 16:50:01 by lagea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void isometric_projection(t_data *data)
 		j = 0;
 		while (j < data->map.len_x)
 		{
-			data->arr[i][j]->x *= data->map.zoom;
-			data->arr[i][j]->y *= data->map.zoom;
-			data->arr[i][j]->z *= data->map.zoom;
+			// data->arr[i][j]->x *= data->map.zoom;
+			// data->arr[i][j]->y *= data->map.zoom;
+			// data->arr[i][j]->z *= data->map.zoom;
 			data->arr[i][j]->x_proj = (data->arr[i][j]->x - data->arr[i][j]->y) * cos(0.523599);
 			data->arr[i][j]->y_proj = (data->arr[i][j]->x + data->arr[i][j]->y) * cos(0.523599) - data->arr[i][j]->z;
 			data->arr[i][j]->x_proj += (WIDTH) / 2;
